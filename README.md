@@ -2,41 +2,49 @@
 
 Gabriell.dev is a full-stack developer portfolio built with Next.js, TypeScript, PostgreSQL, Prisma, and Auth.js.
 
-The project serves as both a public portfolio and a private content-management system for managing projects, site information, and contact messages.
+The project serves as both a public-facing professional portfolio and a private content management system for managing projects, site information, publishing states, and contact messages.
 
-It is designed with a developer-focused visual style using dark editorial layouts, technical typography, responsive project showcases, and project-specific case studies.
+It was designed as a production-ready software engineering project rather than a static portfolio website.
 
 ---
 
-## Current Status
+# Live Portfolio
 
-The portfolio currently includes:
+**Production Website**
 
-- Public portfolio website
-- Dynamic project pages
-- Mobile and web project presentations
-- PostgreSQL database integration
-- Prisma ORM
-- Auth.js credentials authentication
-- Protected admin dashboard
-- Project CRUD
-- Draft / Published / Archived project workflow
-- Featured project management
-- Editable site settings
-- Contact form with database storage
-- Admin inbox for contact messages
-- Project image galleries
-- Responsive mobile application showcases
-- Dynamic SEO metadata
-- Open Graph metadata
-- Sitemap generation
-- Robots configuration
+https://gabriell-dev-zvh3.vercel.app
+
+---
+
+# Project Status
+
+**Version:** `v1.0.0`  
+**Status:** Production Ready  
+**Deployment:** Vercel  
+**Database:** Prisma Postgres
+
+---
+
+# Overview
+
+Gabriell.dev provides a centralized platform for showcasing software engineering projects while allowing portfolio content to be managed through a protected administration dashboard.
+
+The public website presents selected projects, technical skills, experience, project case studies, and contact information.
+
+The private administration system allows project information, publishing states, site settings, and contact messages to be managed without directly editing source code.
+
+The application demonstrates practical implementation of:
+
+- Full-stack application development
+- Responsive user-interface design
+- Database-driven content
+- Authentication and authorization
+- Content management
 - Server-side validation
-- Admin authorization checks
-- Security headers
-- Production-ready Next.js build
-
-The project is currently in the deployment phase.
+- Project publishing workflows
+- Dynamic SEO metadata
+- Production deployment
+- Security hardening
 
 ---
 
@@ -49,6 +57,7 @@ The project is currently in the deployment phase.
 - TypeScript
 - Tailwind CSS
 - Next.js App Router
+- Next.js Image Optimization
 
 ## Backend
 
@@ -56,93 +65,54 @@ The project is currently in the deployment phase.
 - Auth.js
 - Prisma ORM
 - PostgreSQL
+- Prisma Postgres
 
-## Validation and Security
+## Authentication and Security
 
-- Zod
-- bcrypt
+- Auth.js Credentials Provider
+- bcrypt password hashing
+- Zod validation
 - Server-side authorization
-- Input validation
-- Security headers
-- Protected admin routes
+- Protected administration routes
+- Security response headers
+- Environment variable protection
 
 ## Development Tools
 
 - Visual Studio Code
 - Git
 - GitHub
+- PowerShell
 - PostgreSQL
 - Prisma Studio
-- PowerShell
-- Windows
+- Vercel
 
 ---
 
-# Main Features
-
-## Public Portfolio
-
-The public-facing website includes:
-
-- Hero section
-- About section
-- Skills and capabilities
-- Technology stack
-- Experience preview
-- Selected projects
-- Project case studies
-- Contact page
-- Responsive layouts
-- Loading animation
-
----
-
-## Project Case Studies
-
-Each published project can contain:
-
-- Project title
-- Slug
-- Short description
-- Detailed overview
-- Category
-- Year
-- Development status
-- Technologies
-- GitHub link
-- Live project link
-- Main image
-- Screenshot gallery
-- Challenge
-- Solution
-- Project outcome
-
-Project pages are generated dynamically using data stored in PostgreSQL.
-
----
-
-# Mobile Project Presentation
-
-Mobile applications receive a dedicated presentation style.
-
-Mobile projects can display:
-
-- Phone-style application previews
-- Portrait screenshots
-- Responsive mobile galleries
-- Multiple application screens
-- Theme variations
-
-PulseDaily currently includes both:
-
-- Midnight theme
-- Daylight theme
-
----
-
-# Admin Dashboard
-
-The portfolio includes a private administration system located under:
+# Production Architecture
 
 ```text
-/admin
+                     GitHub
+                        │
+                     git push
+                        │
+                        ▼
+                     Vercel
+                        │
+                   Next.js 16
+              ┌─────────┴─────────┐
+              │                   │
+           Public              Private
+          Portfolio            Admin CMS
+              │                   │
+              └─────────┬─────────┘
+                        │
+                     Auth.js
+                        │
+                  Server Actions
+                        │
+                      Prisma
+                        │
+                   PostgreSQL
+                        │
+                 Prisma Postgres
