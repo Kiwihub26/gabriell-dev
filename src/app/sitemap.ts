@@ -6,7 +6,7 @@ import { prisma } from "@/lib/prisma";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl =
-    "https://your-domain.com";
+    "https://gabriell-dev-zvh3.vercel.app";
 
   const projects =
     await prisma.project.findMany({

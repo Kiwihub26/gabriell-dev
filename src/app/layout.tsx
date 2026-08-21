@@ -2,12 +2,17 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 
+const siteUrl =
+  "https://gabriell-dev-zvh3.vercel.app";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://your-domain.com"),
+  metadataBase: new URL(siteUrl),
 
   title: {
-    default: "Gabriell Montero — Software Engineer",
-    template: "%s | Gabriell Montero",
+    default:
+      "Gabriell Montero — Software Engineer",
+    template:
+      "%s | Gabriell Montero",
   },
 
   description:
@@ -36,10 +41,12 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://your-domain.com",
-    siteName: "Gabriell Montero Portfolio",
+    url: siteUrl,
+    siteName:
+      "Gabriell Montero Portfolio",
 
-    title: "Gabriell Montero — Software Engineer",
+    title:
+      "Gabriell Montero — Software Engineer",
 
     description:
       "Full-stack software engineering, mobile development, database systems, and practical digital solutions.",
@@ -49,20 +56,25 @@ export const metadata: Metadata = {
         url: "/images/og-cover.png",
         width: 1200,
         height: 630,
-        alt: "Gabriell Montero Portfolio",
+        alt:
+          "Gabriell Montero Portfolio",
       },
     ],
   },
 
   twitter: {
-    card: "summary_large_image",
+    card:
+      "summary_large_image",
 
-    title: "Gabriell Montero — Software Engineer",
+    title:
+      "Gabriell Montero — Software Engineer",
 
     description:
       "Full-stack software engineering, mobile development, database systems, and practical digital solutions.",
 
-    images: ["/images/og-cover.png"],
+    images: [
+      "/images/og-cover.png",
+    ],
   },
 
   robots: {
@@ -81,7 +93,9 @@ export default function RootLayout({
       lang="en"
       data-scroll-behavior="smooth"
     >
-      <body>{children}</body>
+      <body>
+        {children}
+      </body>
     </html>
   );
 }

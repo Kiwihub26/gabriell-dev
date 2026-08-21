@@ -4,7 +4,7 @@ import type {
 
 export default function robots(): MetadataRoute.Robots {
   const baseUrl =
-    "https://your-domain.com";
+    "https://gabriell-dev-zvh3.vercel.app";
 
   return {
     rules: [
@@ -20,6 +20,7 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
 
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap:
+      `${baseUrl}/sitemap.xml`,
   };
 }
