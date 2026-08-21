@@ -26,9 +26,10 @@ export default function ProjectCard({
   const isMobile =
     project.category === "Mobile Application";
 
+  const isFirstProject = index === 1;
+
   return (
     <article className="group overflow-hidden border border-neutral-800 transition duration-300 hover:border-neutral-600">
-      {/* PROJECT MEDIA */}
       <Link
         href={`/projects/${project.slug}`}
         className={`
@@ -44,8 +45,7 @@ export default function ProjectCard({
         `}
       >
         {isMobile ? (
-          /* MOBILE APP */
-          <div className="flex h-full items-center justify-center">
+          <div className="relative flex min-h-[540px] w-full items-center justify-center">
             <div
               className="
                 relative
@@ -67,24 +67,26 @@ export default function ProjectCard({
                 <ProjectImage
                   src={project.imageUrl}
                   alt={project.title}
+                  priority={isFirstProject}
                   className="object-cover"
                 />
               </div>
             </div>
           </div>
         ) : (
-          /* WEB / DESKTOP PROJECT */
-          <ProjectImage
-            src={project.imageUrl}
-            alt={project.title}
-            className="object-cover group-hover:scale-[1.03]"
-          />
+          <div className="relative h-full w-full">
+            <ProjectImage
+              src={project.imageUrl}
+              alt={project.title}
+              priority={isFirstProject}
+              className="object-cover group-hover:scale-[1.03]"
+            />
+          </div>
         )}
 
         <div className="pointer-events-none absolute inset-0 bg-black/0 transition duration-300 group-hover:bg-black/10" />
       </Link>
 
-      {/* PROJECT INFORMATION */}
       <div className="p-6">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
@@ -114,7 +116,6 @@ export default function ProjectCard({
           {project.description}
         </p>
 
-        {/* TECHNOLOGIES */}
         {project.technologies.length > 0 && (
           <div className="mt-6 flex flex-wrap gap-2">
             {project.technologies
@@ -145,7 +146,6 @@ export default function ProjectCard({
           </div>
         )}
 
-        {/* FOOTER */}
         <div className="mt-8 flex items-center justify-between border-t border-neutral-800 pt-5">
           <p className="font-mono text-[9px] uppercase tracking-[0.12em] text-neutral-600">
             {project.status}

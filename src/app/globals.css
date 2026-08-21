@@ -20,3 +20,29 @@ a { text-decoration: none; }
     transition-duration: 0.01ms !important;
   }
 }
+@keyframes bootProgress {
+  0% {
+    width: 0%;
+  }
+
+  20% {
+    width: 15%;
+  }
+
+  50% {
+    width: 50%;
+  }
+
+  75% {
+    width: 78%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+.boot-loader-progress {
+  width: 0%;
+  animation: bootProgress 1.45s ease-in-out forwards;
+}
