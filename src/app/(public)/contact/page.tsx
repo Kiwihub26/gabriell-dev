@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 
-import { sendMessage } from "./actions";
+import ConfirmForm from "@/components/ConfirmForm";
 
 import { getSiteSettings } from "@/lib/site-settings";
+
+import { sendMessage } from "./actions";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -45,7 +47,8 @@ export default async function ContactPage({
             <p className="mt-8 max-w-lg text-sm leading-7 text-neutral-400 md:text-base">
               Whether it&apos;s a
               software project,
-              collaboration, development
+              collaboration,
+              development
               opportunity, or just a
               conversation about
               technology, feel free to
@@ -98,7 +101,7 @@ export default async function ContactPage({
               </div>
             )}
 
-            {/* SOCIALS */}
+            {/* SOCIAL LINKS */}
             {(settings?.githubUrl ||
               settings?.linkedinUrl) && (
               <div className="mt-10">
@@ -139,24 +142,56 @@ export default async function ContactPage({
 
           {/* RIGHT */}
           <div>
+            {/* SUCCESS */}
             {sent === "true" && (
               <div className="mb-8 border border-[#A3FF12]/40 bg-[#A3FF12]/5 p-5">
-                <p className="font-mono text-xs uppercase tracking-[0.12em] text-[#A3FF12]">
-                  Message sent successfully.
-                </p>
+                <div className="flex items-start gap-4">
+                  <span className="mt-1 flex h-7 w-7 items-center justify-center rounded-full border border-[#A3FF12] font-mono text-xs text-[#A3FF12]">
+                    ✓
+                  </span>
 
-                <p className="mt-2 text-sm text-neutral-400">
-                  Thanks for reaching
-                  out. Your message has
-                  been received.
-                </p>
+                  <div>
+                    <p className="font-mono text-xs uppercase tracking-[0.12em] text-[#A3FF12]">
+                      Message sent
+                      successfully.
+                    </p>
+
+                    <p className="mt-2 text-sm leading-6 text-neutral-400">
+                      Thanks for
+                      reaching out.
+                      Your message has
+                      been received.
+                    </p>
+                  </div>
+                </div>
               </div>
             )}
 
-            <form
+            {/* CONTACT FORM */}
+            <ConfirmForm
               action={sendMessage}
-              className="space-y-7"
+              message="Are you sure you want to send this message?"
+              className="relative space-y-7"
             >
+              {/* HONEYPOT */}
+              <div
+                aria-hidden="true"
+                className="absolute -left-[9999px] h-px w-px overflow-hidden"
+              >
+                <label htmlFor="website">
+                  Website
+                </label>
+
+                <input
+                  id="website"
+                  name="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
+              {/* NAME + EMAIL */}
               <div className="grid gap-6 md:grid-cols-2">
                 <div>
                   <label
@@ -170,6 +205,9 @@ export default async function ContactPage({
                     id="name"
                     name="name"
                     required
+                    minLength={2}
+                    maxLength={100}
+                    autoComplete="name"
                     className="mt-3 w-full border border-neutral-800 bg-transparent px-4 py-4 text-white outline-none transition focus:border-[#A3FF12]"
                   />
                 </div>
@@ -187,11 +225,14 @@ export default async function ContactPage({
                     name="email"
                     type="email"
                     required
+                    maxLength={254}
+                    autoComplete="email"
                     className="mt-3 w-full border border-neutral-800 bg-transparent px-4 py-4 text-white outline-none transition focus:border-[#A3FF12]"
                   />
                 </div>
               </div>
 
+              {/* SUBJECT */}
               <div>
                 <label
                   htmlFor="subject"
@@ -204,10 +245,13 @@ export default async function ContactPage({
                   id="subject"
                   name="subject"
                   required
+                  minLength={3}
+                  maxLength={150}
                   className="mt-3 w-full border border-neutral-800 bg-transparent px-4 py-4 text-white outline-none transition focus:border-[#A3FF12]"
                 />
               </div>
 
+              {/* MESSAGE */}
               <div>
                 <label
                   htmlFor="message"
@@ -220,34 +264,42 @@ export default async function ContactPage({
                   id="message"
                   name="message"
                   required
+                  minLength={10}
+                  maxLength={5000}
                   rows={8}
-                  className="mt-3 w-full resize-y border border-neutral-800 bg-transparent px-4 py-4 text-white outline-none transition focus:border-[#A3FF12]"
+                  className="mt-3 w-full resize-y border border-neutral-800 bg-transparent px-4 py-4 leading-7 text-white outline-none transition focus:border-[#A3FF12]"
                 />
               </div>
 
-              <button
-                type="submit"
-                className="bg-[#A3FF12] px-7 py-4 font-mono text-xs font-semibold uppercase tracking-[0.15em] text-black transition hover:bg-white"
-              >
-                Send Message
-              </button>
-            <div
-  aria-hidden="true"
-  className="absolute -left-[9999px] h-px w-px overflow-hidden"
->
-  <label htmlFor="website">
-    Website
-  </label>
+              {/* SUBMIT */}
+              <div className="flex flex-wrap items-center justify-between gap-5 border-t border-neutral-800 pt-7">
+                <p className="max-w-sm font-mono text-[9px] uppercase leading-5 tracking-[0.12em] text-neutral-600">
+                  You will be asked
+                  to confirm before
+                  your message is
+                  submitted.
+                </p>
 
-  <input
-    id="website"
-    name="website"
-    type="text"
-    tabIndex={-1}
-    autoComplete="off"
-  />
-</div>
-            </form>
+                <button
+                  type="submit"
+                  className="
+                    bg-[#A3FF12]
+                    px-7
+                    py-4
+                    font-mono
+                    text-xs
+                    font-semibold
+                    uppercase
+                    tracking-[0.15em]
+                    text-black
+                    transition
+                    hover:bg-white
+                  "
+                >
+                  Send Message
+                </button>
+              </div>
+            </ConfirmForm>
           </div>
         </div>
       </section>

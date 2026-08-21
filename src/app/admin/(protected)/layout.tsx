@@ -6,6 +6,8 @@ import { redirect } from "next/navigation";
 
 import { auth } from "@/auth";
 
+import LogoutButton from "@/components/admin/LogoutButton";
+
 export const metadata: Metadata = {
   title: "Admin",
 
@@ -42,7 +44,8 @@ export default async function AdminProtectedLayout({
     <div className="min-h-screen bg-[#0A0A0A] text-white">
       <div className="grid min-h-screen lg:grid-cols-[240px_1fr]">
         {/* SIDEBAR */}
-        <aside className="border-b border-neutral-800 p-6 lg:border-b-0 lg:border-r">
+        <aside className="flex flex-col border-b border-neutral-800 p-6 lg:border-b-0 lg:border-r">
+          {/* BRAND */}
           <Link
             href="/admin"
             className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#A3FF12]"
@@ -50,6 +53,24 @@ export default async function AdminProtectedLayout({
             GM / Admin
           </Link>
 
+          {/* USER */}
+          <div className="mt-6 border-t border-neutral-800 pt-6">
+            <p className="font-mono text-[9px] uppercase tracking-[0.14em] text-neutral-700">
+              Signed In
+            </p>
+
+            <p className="mt-2 truncate text-sm text-neutral-400">
+              {session.user.name ??
+                session.user.email ??
+                "Administrator"}
+            </p>
+
+            <p className="mt-1 font-mono text-[8px] uppercase tracking-[0.12em] text-[#A3FF12]">
+              Administrator
+            </p>
+          </div>
+
+          {/* NAVIGATION */}
           <nav className="mt-10 flex flex-col gap-2">
             <Link
               href="/admin"
@@ -82,11 +103,23 @@ export default async function AdminProtectedLayout({
             <Link
               href="/"
               target="_blank"
+              rel="noreferrer"
               className="mt-6 border border-neutral-800 px-4 py-3 font-mono text-[10px] uppercase tracking-[0.12em] text-neutral-500 transition hover:border-[#A3FF12] hover:text-[#A3FF12]"
             >
               View Portfolio ↗
             </Link>
           </nav>
+
+          {/* BOTTOM ACTIONS */}
+          <div className="mt-auto pt-10">
+            <div className="border-t border-neutral-800 pt-6">
+              <p className="mb-4 font-mono text-[8px] uppercase tracking-[0.14em] text-neutral-700">
+                Session
+              </p>
+
+              <LogoutButton />
+            </div>
+          </div>
         </aside>
 
         {/* CONTENT */}
