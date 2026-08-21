@@ -1,52 +1,148 @@
-# Gabriell.dev — Debugged Lesson 10 Snapshot
+# Gabriell.dev — Full-Stack Developer Portfolio
 
-This ZIP contains the portfolio through Lesson 10: public portfolio, PostgreSQL/Prisma models, database-driven projects, boot animation, Auth.js credentials login, and a protected admin dashboard.
+Gabriell.dev is a full-stack developer portfolio built with Next.js, TypeScript, PostgreSQL, Prisma, and Auth.js.
 
-## Important architecture fix
+The project serves as both a public portfolio and a private content-management system for managing projects, site information, and contact messages.
 
-Public pages are inside `src/app/(public)` and have their own layout. Admin pages are outside that group, so the public navbar/footer/boot loader never wrap `/admin`. Admin protection is enforced in `src/app/admin/(protected)/layout.tsx` using `auth()` and an `ADMIN` role check. A Proxy is intentionally not required at this stage; the server layout is the authorization boundary.
+It is designed with a developer-focused visual style using dark editorial layouts, technical typography, responsive project showcases, and project-specific case studies.
 
-## Setup on Windows
+---
 
-1. Extract this folder.
-2. Open PowerShell in it.
-3. Run `npm install`.
-4. Copy `.env.example` to `.env`.
-5. Fill in `DATABASE_URL`, `AUTH_SECRET`, `ADMIN_EMAIL`, and `ADMIN_PASSWORD`.
-6. Ensure PostgreSQL has a database named `gabriell_portfolio`.
-7. Run:
+## Current Status
 
-```powershell
-npx prisma validate
-npx prisma generate
-npx prisma migrate dev --name init
-npm run db:seed
-npm run typecheck
-npm run dev
-```
+The portfolio currently includes:
 
-Then open:
-- Public: http://localhost:3000
-- Admin: http://localhost:3000/admin/login
+- Public portfolio website
+- Dynamic project pages
+- Mobile and web project presentations
+- PostgreSQL database integration
+- Prisma ORM
+- Auth.js credentials authentication
+- Protected admin dashboard
+- Project CRUD
+- Draft / Published / Archived project workflow
+- Featured project management
+- Editable site settings
+- Contact form with database storage
+- Admin inbox for contact messages
+- Project image galleries
+- Responsive mobile application showcases
+- Dynamic SEO metadata
+- Open Graph metadata
+- Sitemap generation
+- Robots configuration
+- Server-side validation
+- Admin authorization checks
+- Security headers
+- Production-ready Next.js build
 
-## AUTH_SECRET
+The project is currently in the deployment phase.
 
-Generate one with:
+---
 
-```powershell
-npx auth secret
-```
+# Tech Stack
 
-If that command writes to a different env file, copy the generated `AUTH_SECRET` into `.env`.
+## Frontend
 
-## PostgreSQL password characters
+- Next.js 16
+- React
+- TypeScript
+- Tailwind CSS
+- Next.js App Router
 
-If your password contains special URL characters, percent-encode them in `DATABASE_URL`. Example: `!` becomes `%21`, `@` becomes `%40`.
+## Backend
 
-## Existing database
+- Next.js Server Actions
+- Auth.js
+- Prisma ORM
+- PostgreSQL
 
-If you already migrated the same schema, `npx prisma migrate dev --name init` may report that the database is already synchronized. That is fine. If your existing migration history is inconsistent, use a fresh development database named `gabriell_portfolio_debugged` and update `DATABASE_URL` accordingly.
+## Validation and Security
 
-## Security
+- Zod
+- bcrypt
+- Server-side authorization
+- Input validation
+- Security headers
+- Protected admin routes
 
-`.env` is ignored by Git. Never commit your real database or admin passwords.
+## Development Tools
+
+- Visual Studio Code
+- Git
+- GitHub
+- PostgreSQL
+- Prisma Studio
+- PowerShell
+- Windows
+
+---
+
+# Main Features
+
+## Public Portfolio
+
+The public-facing website includes:
+
+- Hero section
+- About section
+- Skills and capabilities
+- Technology stack
+- Experience preview
+- Selected projects
+- Project case studies
+- Contact page
+- Responsive layouts
+- Loading animation
+
+---
+
+## Project Case Studies
+
+Each published project can contain:
+
+- Project title
+- Slug
+- Short description
+- Detailed overview
+- Category
+- Year
+- Development status
+- Technologies
+- GitHub link
+- Live project link
+- Main image
+- Screenshot gallery
+- Challenge
+- Solution
+- Project outcome
+
+Project pages are generated dynamically using data stored in PostgreSQL.
+
+---
+
+# Mobile Project Presentation
+
+Mobile applications receive a dedicated presentation style.
+
+Mobile projects can display:
+
+- Phone-style application previews
+- Portrait screenshots
+- Responsive mobile galleries
+- Multiple application screens
+- Theme variations
+
+PulseDaily currently includes both:
+
+- Midnight theme
+- Daylight theme
+
+---
+
+# Admin Dashboard
+
+The portfolio includes a private administration system located under:
+
+```text
+/admin
