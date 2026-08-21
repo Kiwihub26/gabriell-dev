@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum PublishStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+model Project {
+  id            Int           @id @default(autoincrement())
+  title         String
+  slug          String        @unique
+  description   String
+  overview      String
+  year          Int
+  status        String
+  category      String
+  featured      Boolean       @default(false)
+  displayOrder  Int           @default(0)
+  publishStatus PublishStatus @default(DRAFT)
+
+  technologies  String[]      @default([])
+  githubUrl     String?
+  liveUrl       String?
+  imageUrl      String?
+  galleryImages String[]      @default([])
+
+  challenge     String?
+  solution      String?
+  result        String?
+
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         String   @default("ADMIN")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Message {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  subject   String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model SiteSettings {
+  id           Int      @id @default(1)
+  name         String
+  title        String
+  bio          String
+  location     String?
+  contactEmail String?
+  availability String?
+  githubUrl    String?
+  linkedinUrl  String?
+  siteLabel    String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
